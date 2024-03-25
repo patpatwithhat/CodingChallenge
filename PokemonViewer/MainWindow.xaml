@@ -1,0 +1,31 @@
+﻿<Window x:Class="PokemonViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PokemonViewer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="pokemonNameTextBox"
+         Margin="5"
+         Text="Enter Pokémon Name..."
+         Foreground="Gray"
+         GotFocus="PokemonNameTextBox_GotFocus"
+         LostFocus="PokemonNameTextBox_LostFocus"/>
+
+        <Button Content="Search" Grid.Row="0" HorizontalAlignment="Right" Width="100" Margin="5" Click="SearchButton_Click"/>
+        <Image x:Name="pokemonImage" MouseDown="PokemonImage_Click" Grid.Row="1" Margin="5" />
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5">
+            <TextBlock x:Name="pokemonRarity" Text="Rarity:" FontWeight="Bold" />
+            <TextBlock x:Name="pokemonAbilities" Text="Abilities:" FontWeight="Bold" />
+            <TextBlock x:Name="pokemonTypes" Text="Types:" FontWeight="Bold" />
+        </StackPanel>
+    </Grid>
+</Window>
