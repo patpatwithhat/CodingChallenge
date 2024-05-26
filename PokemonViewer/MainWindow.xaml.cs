@@ -1,17 +1,9 @@
-﻿using Microsoft.Win32;
-using PokemonViewer.Models;
+﻿using PokemonViewer.Models;
 using PokemonViewer.Services;
 using System.IO;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PokemonViewer
 {
@@ -53,7 +45,7 @@ namespace PokemonViewer
         private void UpdateView()
         {
             if (_currentPokemon == null)
-                return; 
+                return;
             pokemonImage.Source = _currentImageType == PokemonImageType.Normal ? new BitmapImage(new Uri(_currentPokemon.ImageUrl!)) : new BitmapImage(new Uri(_currentPokemon.ShinyImageUrl!));
             pokemonAbilities.Text = "Abilities: " + string.Join(", ", _currentPokemon.Abilities!);
             pokemonTypes.Text = "Types: " + string.Join(", ", _currentPokemon.Types!);

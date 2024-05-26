@@ -6,13 +6,17 @@ namespace PokemonViewer.Services
 {
     public class PokemonService
     {
+        private readonly HttpClient _httpClient;
+        public PokemonService() { _httpClient = new HttpClient(); }
+        public PokemonService(HttpClient httpClient) { _httpClient = httpClient; }
+
         public async Task<PokemonModel?> GetPokemonDetails(string pokemonName)
         {
-            using (var client = new HttpClient())
+            try
             {
                 string url = $"https://pokeapi.co/api/v2/pokemon/{pokemonName.ToLower()}";
-                var response = await client.GetStringAsync(url);
-        
+                var response = await _httpClient.GetStringAsync(url);
+
                 dynamic? pokemonJson = JsonConvert.DeserializeObject(response);
                 if (pokemonJson == null)
                     return null;
@@ -37,6 +41,10 @@ namespace PokemonViewer.Services
                 }
 
                 return pokemon;
+            }
+            catch (HttpRequestException)
+            {
+                return null;
             }
         }
     }
